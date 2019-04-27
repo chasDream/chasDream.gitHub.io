@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya">
+    
+    <title>Linux安装工具常用命令 | 穆清</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="keywords" content="chasdream, 后端, Java, chasdream, 后端开发">
+    <meta name="description" content="Java开发工程师">
+
+    
+    <link rel="alternative" href="/atom.xml" title="穆清" type="application/atom+xml">
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    
+
+</head>
+</html>
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+ <!--       <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">穆清</span>
+                    <span class="description">chasdream</span>
+                </div>
+            </a>
+        </div> 
+	-->
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2018/04/27/2018-04-17-LinuxInstallSheel/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2018/04/27/2018-04-17-LinuxInstallSheel/index.html" class="item ">
+                <a href="/about/" title="关于个人" class="icon-about">&nbsp;关于个人</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/chasdream" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://github.com/chasdream" target="_blank">穆清</a>
+                        
+                    
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/headerpic.jpg" alt="avatar" title="chasdream">
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>Linux安装工具常用命令</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        穆清 发表于
+        <time datetime="2018-04-27T03:39:00.000Z">2018-04-27</time>
+    </p>
+    <div class="post-content">
+        <p>[TOC]</p>
+<h5 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a>1.说明</h5><p>Centos7为例</p>
+<h5 id="2-Linux安装java"><a href="#2-Linux安装java" class="headerlink" title="2.Linux安装java"></a>2.Linux安装java</h5><h6 id="2-1方式一"><a href="#2-1方式一" class="headerlink" title="2.1方式一"></a>2.1方式一</h6><ul>
+<li><p>下载jdk.tar.gz</p>
+</li>
+<li><p>解压到指定目录: 如：tar –zxvf jdk-8u101-linux-x64.tar.gz –C /opt/java</p>
+</li>
+<li><p>在/etc/profile文件中配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/java/jdk1.8.0_101</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启生效：source /etc/profile</p>
+</li>
+<li><p>测试是否成功：java –version</p>
+</li>
+</ul>
+<h6 id="2-2方式二"><a href="#2-2方式二" class="headerlink" title="2.2方式二"></a>2.2方式二</h6><ul>
+<li><p>查看CentOS自带JDK是否已安装：yum list installed|grep java</p>
+</li>
+<li><p>查看yum库中的Java安装包：yum –y list java*</p>
+</li>
+<li><p>安装java：/usr/java: yum –y install java-1.8.0-openjdk*</p>
+</li>
+<li><p>卸载java：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">卸载JDK相关文件输入：yum -y remove java-1.7.0-openjdk*</span><br><span class="line">卸载tzdata-java输入：yum -y remove tzdata-java.noarch</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装路径：which java</p>
+</li>
+</ul>
+<h5 id="3-Linux安装maven"><a href="#3-Linux安装maven" class="headerlink" title="3.Linux安装maven"></a>3.Linux安装maven</h5><ul>
+<li><p>下载maven-3.3.9. tar.gz</p>
+</li>
+<li><p>解压到指定目录: 如：tar –zxvf maven.tar.gz –C /home/maven</p>
+</li>
+<li><p>在/etc/profile文件中配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export MAVEN_HOME= /home/maven/apache-maven-3.3.9</span><br><span class="line">export PATH=$ MAVEN_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启生效：source /etc/profile</p>
+</li>
+<li>测试是否成功：mvn –version</li>
+</ul>
+<h5 id="4-Linux安装python3"><a href="#4-Linux安装python3" class="headerlink" title="4.Linux安装python3"></a>4.Linux安装python3</h5><ul>
+<li><p>下载Python3：wget <a href="https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz" target="_blank" rel="noopener">https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz</a></p>
+</li>
+<li><p>创建Python3安装目录：mkdir /usr/local/python3</p>
+</li>
+<li><p>安装包解压并安装到改安装目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf Python-3.6.5.tgz</span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建python3软链接：ln -s /usr/local/python3/bin/python3 /usr/bin/python3</p>
+</li>
+<li><p>在/etc/profile文件中配置环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$HOME/bin:/usr/local/python3/bin:$PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启生效：source /etc/profile</p>
+</li>
+<li><p>安装错误解决方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zipimport.ZipImportError: can&apos;t decompress data; zlib not available错误：</span><br><span class="line">解决方案：# yum -y install zlib*</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="5-Linux安装redis"><a href="#5-Linux安装redis" class="headerlink" title="5.Linux安装redis"></a>5.Linux安装redis</h5><ul>
+<li><p>下载解压安装</p>
+<pre><code>&gt; wget http://download.redis.io/releases/redis-5.0.0.tar.gz
+&gt; tar xzf redis-5.0.0.tar.gz
+&gt; cd redis-5.0.0
+&gt; make
+</code></pre></li>
+<li><p>进入src目录下启动</p>
+<pre><code>&gt; ./redis-server
+</code></pre></li>
+<li><p>配置守护进程redis.conf中daemonize设置为yes,重新启动即可</p>
+<pre><code>&gt; daemonize yes
+&gt; ./redis-server /usr/local/redis/redis.conf
+</code></pre></li>
+<li><p>设置连接密码，redis.conf中requirepass配置永久密码</p>
+<pre><code>&gt; requirepass passwd
+</code></pre></li>
+</ul>
+<h5 id="6-Linux安装nginx-mac"><a href="#6-Linux安装nginx-mac" class="headerlink" title="6.Linux安装nginx(mac)"></a>6.Linux安装nginx(mac)</h5><ul>
+<li><p>在/usr/local/目录下创建nginx文件夹 </p>
+<pre><code>&gt; sudo mkdir nginx
+</code></pre></li>
+<li><p>下载zlib源码 并复制到/usr/local/nginx, 下载地址：<a href="http://zlib.net/" target="_blank" rel="noopener">http://zlib.net/</a></p>
+<pre><code>&gt; sudo mv /xxx/zlib-1.2.11.tar.gz /usr/local/nginx/
+&gt; sudo tar -xvf zlib-1.2.11.tar.gz   # 解压
+</code></pre></li>
+<li><p>下载pcre源码 并复制到/usr/local/nginx，下载地址：<a href="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/" target="_blank" rel="noopener">ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/</a></p>
+<pre><code>&gt; sudo mv /xxx/pcre-8.43.tar.gz /usr/local/nginx/
+&gt; sudo tar -xvf pcre-8.43.tar.gz
+</code></pre></li>
+<li><p>下载openssl源码 并复制到/usr/local/nginx，下载地址：<a href="https://www.openssl.org/source/" target="_blank" rel="noopener">https://www.openssl.org/source/</a></p>
+<pre><code>&gt; sudo mv /xxx/openssl-1.1.1a.tar.gz /usr/local/nginx/
+&gt; sudo tar -xvf openssl-1.1.1a.tar.gz
+</code></pre></li>
+<li><p>下载ngix 并复制到/usr/local/nginx</p>
+<pre><code>&gt; sudo mv /xxx/nginx-1.14.2.tar.gz /usr/local/nginx/
+&gt; sudo tar -xvf nginx-1.14.2.tar.gz
+</code></pre></li>
+<li><p>安装ngix 进入解压后的/usr/local/nginx/nginx-1.14.2目录安装nginx</p>
+<pre><code>&gt; sudo ./configure --prefix=/usr/local/nginx/ --with-zlib=/usr/local/nginx/zlib-1.2.11 --with-pcre=/usr/local/nginx/pcre-8.43 --with-http_ssl_module --with-openssl=/usr/local/nginx/openssl-1.1.1a
+&gt; sudo make
+&gt; sudo make install
+
+注：
+--with-zlib、--with-pcre、--with-openssl必须是源码的路径；
+--with-http_ssl_module开启支持https协议
+</code></pre></li>
+<li><p>启动/重启/停止nginx</p>
+<pre><code>&gt; sudo /usr/local/nginx/sbin/nginx #启动nginx
+&gt; sudo /usr/local/nginx/sbin/nginx -s reload #重启nginx
+&gt; sudo /usr/local/nginx/sbin/nginx -s stop #停止nginx
+</code></pre></li>
+</ul>
+
+    </div>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            <a class="cat-link" href="/categorys/linux技术/">linux技术</a>
+        </span>
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tag/linux/" title="linux">linux</a>
+    
+
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br>
+        <a href="/2018/11/11/2018-11-11-LinuxInstallmysql/">
+            
+                Linux安装mysql指南
+            
+        </a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br>
+        <a href="javascript: void(0);">没有下一篇了</a>
+    </span>
+    
+</div>
+
+<!-- 文章评论 -->
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+    <li>
+        <a href="/categorys/linux技术/">linux技术</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/设计模式/">设计模式</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/redis技术/">redis技术</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/java/">java</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tag/linux/" title="linux">linux (2)</a>
+  
+    <a class="tag-item" href="/tag/mysql/" title="mysql">mysql (1)</a>
+  
+    <a class="tag-item" href="/tag/设计模式/" title="设计模式">设计模式 (1)</a>
+  
+    <a class="tag-item" href="/tag/redis/" title="redis">redis (1)</a>
+  
+    <a class="tag-item" href="/tag/spring/" title="spring">spring (1)</a>
+  
+    <a class="tag-item" href="/tag/java/" title="java">java (2)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2018-2019
+    
+
+    <a href="/">chasdream</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+<script src="/js/main.js"></script>
+</body>
+</html>

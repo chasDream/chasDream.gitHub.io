@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya">
+    
+    <title>Linux安装mysql指南 | 穆清</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="keywords" content="chasdream, 后端, Java, chasdream, 后端开发">
+    <meta name="description" content="Java开发工程师">
+
+    
+    <link rel="alternative" href="/atom.xml" title="穆清" type="application/atom+xml">
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    
+
+</head>
+</html>
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+ <!--       <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">穆清</span>
+                    <span class="description">chasdream</span>
+                </div>
+            </a>
+        </div> 
+	-->
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2018/11/11/2018-11-11-LinuxInstallmysql/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2018/11/11/2018-11-11-LinuxInstallmysql/index.html" class="item ">
+                <a href="/about/" title="关于个人" class="icon-about">&nbsp;关于个人</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/chasdream" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://github.com/chasdream" target="_blank">穆清</a>
+                        
+                    
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/headerpic.jpg" alt="avatar" title="chasdream">
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>Linux安装mysql指南</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        穆清 发表于
+        <time datetime="2018-11-11T06:26:00.000Z">2018-11-11</time>
+    </p>
+    <div class="post-content">
+        <p>[TOC]</p>
+<h5 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a>1.说明</h5><p>Centos7环境安装mysql8.0二进制文件为例；该文档旨在记录mysql8.0安装步骤及安装过程中出现的坑，避免以后出现同样的问题能够及时解决；此文档仅作参考，并未记录所有踩过的坑；</p>
+<h5 id="2-Linux安装mysql"><a href="#2-Linux安装mysql" class="headerlink" title="2.Linux安装mysql"></a>2.Linux安装mysql</h5><h6 id="2-1-下载并解压mysql安装文件"><a href="#2-1-下载并解压mysql安装文件" class="headerlink" title="2.1 下载并解压mysql安装文件"></a>2.1 下载并解压mysql安装文件</h6><ul>
+<li><p>mysql官网下载社区版本二进制安装包</p>
+</li>
+<li><p>解压安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; tar -xvf mysql-8.0.13-linux-glibc2.12-x86_64.tar.xz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将解压文件并放到：/usr/local/mysql </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; 例:mv /xxx/mysql-8.0.13-linux-glibc2.12-x86_64 /usr/local/mysql</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="2-2建立用户及mysql目录"><a href="#2-2建立用户及mysql目录" class="headerlink" title="2.2建立用户及mysql目录"></a>2.2建立用户及mysql目录</h6><ul>
+<li><p>添加mysql用户组</p>
+<pre><code>&gt; groupadd mysql
+</code></pre></li>
+<li><p>创建mysql用户并将其添加mysql用户组</p>
+<pre><code>&gt; useradd -r -g mysql mysql
+</code></pre></li>
+<li><p>mysql用户设置密码(可省略)</p>
+<pre><code>&gt; passwd mysql
+</code></pre></li>
+</ul>
+<h6 id="2-3-配置mysql启动配置文件"><a href="#2-3-配置mysql启动配置文件" class="headerlink" title="2.3 配置mysql启动配置文件"></a>2.3 配置mysql启动配置文件</h6><ul>
+<li><p>复制my-default.cnf到/etc/my.cnf(mysqld启动时自动读取,若无自己创建/etc/my.cnf文件)</p>
+<pre><code>&gt; cp /usr/local/mysql/support-files/my-default.cnf /et/my.cnf
+</code></pre></li>
+<li><p>复制mysql.server 到/etc/init.d/目录下(实现开机自启功能)</p>
+<pre><code>&gt; cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
+&gt; /etc/init.d/mysql中的mysql是服务名
+&gt; /etc/init.d 类似于windows中的服务注册表
+</code></pre></li>
+<li><p>修改/etc/init.d/mysql中的配置</p>
+<pre><code>basedir=/usr/local/mysql
+datadir=/usr/local/mysql/data
+</code></pre></li>
+<li><p>将/usr/local/mysql目录修改为mysql用户</p>
+<pre><code>&gt; chown -R mysql:mysql /usr/local/mysql
+</code></pre></li>
+<li><p>/etc/my.cnf配置文件修改</p>
+<pre><code>修改vim /etc/my.cnf配置文件，设置默认字符集编码；
+</code></pre><p>  ​        [mysql] <br>  ​            default-character-set=utf8<br>  ​<br>  ​        [mysqld] <br>  ​            default-storage-engine=INNODB <br>  ​            character_set_server=utf8</p>
+</li>
+</ul>
+<h6 id="2-4-初始化mysql数据库"><a href="#2-4-初始化mysql数据库" class="headerlink" title="2.4 初始化mysql数据库"></a>2.4 初始化mysql数据库</h6><ul>
+<li><p>初始化，初始化成功后会自动生成一个临时密码，如下图：</p>
+<pre><code>&gt; /usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data 
+</code></pre></li>
+<li><p>给数据库加密</p>
+<pre><code>&gt; /usr/local/mysql/bin/mysql_ssl_rsa_setup --datadir=/usr/local/mysql/data
+</code></pre></li>
+<li><p>启动mysql</p>
+<pre><code>&gt; /etc/init.d/mysql start
+</code></pre></li>
+</ul>
+<p><img src="https://chasdream.github.io/image/mysql/1.mysql_install_success_tips.png" alt></p>
+<h6 id="2-5-修改登录root密码"><a href="#2-5-修改登录root密码" class="headerlink" title="2.5 修改登录root密码"></a>2.5 修改登录root密码</h6><ul>
+<li><p>修改登录mysql8.0以上版本root密码</p>
+<pre><code>&gt; ./mysqld_safe --skip-grant-tables
+&gt; update mysql.user set authentication_string=&apos;&apos; where user=&apos;root&apos;;
+&gt; flush privileges;
+&gt; alter user &apos;root&apos;@&apos;localhost&apos; identified by &apos;passwd&apos;;
+&gt; quit;
+</code></pre></li>
+</ul>
+<h6 id="2-6-远程访问及授权"><a href="#2-6-远程访问及授权" class="headerlink" title="2.6 远程访问及授权"></a>2.6 远程访问及授权</h6><ul>
+<li><p>授权admin在任何IP下可远程访问，并具有数据库操作的所有权限：</p>
+<pre><code>&gt; create user &apos;admin&apos;@&apos;%&apos; identified by &apos;passwd&apos;;(创建可远程访问的用户)
+&gt; grant all privileges on *.* to &apos;admin&apos;@&apos;%&apos; with grant option;
+&gt; flush privileges; （重载授权表）
+&gt; quit; 
+</code></pre></li>
+<li><p>授权admin在特定IP下可远程访问，并具有数据库操作的所有权限：</p>
+<pre><code>&gt; grant all privileges on *.* to &apos;root&apos;@&apos;特定IP&apos; with grant option;
+&gt; flush privileges; （重载授权表）
+</code></pre></li>
+<li><p>授权admin特定IP下可远程访问，具有特定的数据库操作权限：</p>
+<pre><code>&gt; grant select，insert，update，delete on  *.* to &apos;root&apos;@&apos;特定IP&apos; with grant option;
+&gt; flush privileges; （重载授权表）
+</code></pre></li>
+</ul>
+<h6 id="2-7-配置开机自启"><a href="#2-7-配置开机自启" class="headerlink" title="2.7 配置开机自启"></a>2.7 配置开机自启</h6><ul>
+<li><p>配置开机自启</p>
+<pre><code>&gt; 添加mysql服务：chkconfig --add mysql
+&gt; 设置mysql服务自启：chkconfig mysql on
+</code></pre></li>
+</ul>
+<h5 id="3-踩过的坑及解决方案"><a href="#3-踩过的坑及解决方案" class="headerlink" title="3.踩过的坑及解决方案"></a>3.踩过的坑及解决方案</h5><ul>
+<li><p>1./usr/local/mysql/bin/mysqld –initialize –user=mysql –basedir=/usr/local/mysql –datadir=/usr/local/mysql/data 命令初始化mysql数据库时报错信息：<br>bin/mysqld: error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</p>
+<pre><code>解决方案：
+- 输入rpm -qa|grep libaio检查是否安装libaio
+- 未安装使用yum install  libaio-devel.x86_64命令安装即可
+- 继续初始化mysql数据库
+</code></pre></li>
+<li><p>2.Starting MySQL.The server quit without updating PID file (/[失败]cal/mysql/data/chasdreams.pid).</p>
+<pre><code>增加用户权限：chown -R mysql:mysql /usr/local/mysql
+</code></pre></li>
+<li><p>3.ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’</p>
+<pre><code>my.cnf文件增加：
+[mysql]
+    socket=/usr/local/mysql/mysql.sock #自定义目录
+[mysqld]
+    socket=/usr/local/mysql/mysql.sock #自定义目录
+</code></pre></li>
+<li><p>4.远程访问阿里云服务器上安装的mysql报”连接超时”</p>
+<pre><code>解决方案：
+    1.关闭系统防火墙或对外开放mysql端口
+    2.在阿里云管理控制台创建安全组入方向开放mysql端口
+</code></pre></li>
+</ul>
+
+    </div>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            <a class="cat-link" href="/categorys/linux技术/">linux技术</a>
+        </span>
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tag/linux/" title="linux">linux</a> / 
+    
+        <a href="/tag/mysql/" title="mysql">mysql</a>
+    
+
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br>
+        <a href="/2018/11/13/2018-11-13-JavaDesignPatterns/">
+            
+                Java设计模式
+            
+        </a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br>
+        <a href="/2018/04/27/2018-04-17-LinuxInstallSheel/">
+            
+                Linux安装工具常用命令
+            
+        </a>
+    </span>
+    
+</div>
+
+<!-- 文章评论 -->
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+    <li>
+        <a href="/categorys/linux技术/">linux技术</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/设计模式/">设计模式</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/redis技术/">redis技术</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/java/">java</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tag/linux/" title="linux">linux (2)</a>
+  
+    <a class="tag-item" href="/tag/mysql/" title="mysql">mysql (1)</a>
+  
+    <a class="tag-item" href="/tag/设计模式/" title="设计模式">设计模式 (1)</a>
+  
+    <a class="tag-item" href="/tag/redis/" title="redis">redis (1)</a>
+  
+    <a class="tag-item" href="/tag/spring/" title="spring">spring (1)</a>
+  
+    <a class="tag-item" href="/tag/java/" title="java">java (2)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2018-2019
+    
+
+    <a href="/">chasdream</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+<script src="/js/main.js"></script>
+</body>
+</html>

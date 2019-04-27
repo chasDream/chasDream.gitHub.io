@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya">
+    
+    <title>文章归档: 2019 | 穆清</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="keywords" content="chasdream, 后端, Java, chasdream, 后端开发">
+    <meta name="description" content="Java开发工程师">
+
+    
+    <link rel="alternative" href="/atom.xml" title="穆清" type="application/atom+xml">
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    
+
+</head>
+</html>
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+ <!--       <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">穆清</span>
+                    <span class="description">chasdream</span>
+                </div>
+            </a>
+        </div> 
+	-->
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/archives/2019/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/archives/2019/index.html" class="item ">
+                <a href="/about/" title="关于个人" class="icon-about">&nbsp;关于个人</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/chasdream" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://github.com/chasdream" target="_blank">穆清</a>
+                        
+                    
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/headerpic.jpg" alt="avatar" title="chasdream">
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章归档 -->
+
+    <h3 class="widget-hd">
+        <strong>
+            
+                文章归档
+                <!-- 文章归档，可以根据日期分类 -->
+            
+        </strong>
+    </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categorys/redis技术/">redis技术</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="http://localhost:4000/2019/02/15/2019-02-15-SpringdataredisException/">
+    		spring-data-redis序列化key-value乱码
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        穆清 发表于
+        <time datetime="2019-02-15T05:35:00.000Z">2019-02-15</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tag/redis/" title="redis">redis</a> / 
+    
+        <a href="/tag/spring/" title="spring">spring</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h4>spring-data-redis序列化key-value解决乱码问题：</h4>
+
+<ul>
+<li><p>spring-boot使用spring-data-redis的RedisTemplate&lt;K, V&gt;模板操作redis时若不指定序列化类，则默认使用JdkSerializationRedisSerializer进行序列化，则会出现类似于\xac\xed\x00\x05t\x00’test_key乱码；</p>
+</li>
+<li><p>解决方案：</p>
+<pre><code>如下代码通过StringRedisSerializer类进行序列化从而在key-value前面不会加类型字符串，代码配置如下：
+
+@Configuration
+public class RedisConfig {
+    @Bean
+    RedisHelper&lt;String, Object&gt; redisHelper(@Qualifier(&quot;redisTemplate&quot;) RedisTemplate redisTemplate) {
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
+        return new RedisHelper&lt;&gt;(redisTemplate);
+    }
+}
+</code></pre></li>
+</ul>
+
+            
+            <p class="more">
+                <a href="http://localhost:4000/2019/02/15/2019-02-15-SpringdataredisException/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img>
+            <a href="http://localhost:4000/2019/02/15/2019-02-15-SpringdataredisException/" title="spring-data-redis序列化key-value乱码">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/5.jpg" alt="默认配图">
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+
+    
+    <nav class="page-navigator">
+        <span class="page-number current">1</span>
+    </nav>
+    
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+    <li>
+        <a href="/categorys/linux技术/">linux技术</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/设计模式/">设计模式</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/redis技术/">redis技术</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/java/">java</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tag/linux/" title="linux">linux (2)</a>
+  
+    <a class="tag-item" href="/tag/mysql/" title="mysql">mysql (1)</a>
+  
+    <a class="tag-item" href="/tag/设计模式/" title="设计模式">设计模式 (1)</a>
+  
+    <a class="tag-item" href="/tag/redis/" title="redis">redis (1)</a>
+  
+    <a class="tag-item" href="/tag/spring/" title="spring">spring (1)</a>
+  
+    <a class="tag-item" href="/tag/java/" title="java">java (2)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2018-2019
+    
+
+    <a href="/">chasdream</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+<script src="/js/main.js"></script>
+</body>
+</html>

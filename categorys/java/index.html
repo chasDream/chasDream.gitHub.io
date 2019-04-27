@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya">
+    
+    <title>java | 穆清</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="keywords" content="chasdream, 后端, Java, chasdream, 后端开发">
+    <meta name="description" content="Java开发工程师">
+
+    
+    <link rel="alternative" href="/atom.xml" title="穆清" type="application/atom+xml">
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    
+
+</head>
+</html>
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+ <!--       <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">穆清</span>
+                    <span class="description">chasdream</span>
+                </div>
+            </a>
+        </div> 
+	-->
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/categorys/java/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/categorys/java/index.html" class="item ">
+                <a href="/about/" title="关于个人" class="icon-about">&nbsp;关于个人</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/chasdream" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://github.com/chasdream" target="_blank">穆清</a>
+                        
+                    
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/headerpic.jpg" alt="avatar" title="chasdream">
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章分类 -->
+
+    <h3 class="widget-hd">
+        <strong>
+            
+                `java`分类下的文章
+            
+        </strong>
+    </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categorys/java/">java</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="http://localhost:4000/2018/12/09/2018-12-09-JavaRTTI/">
+    		Java类型信息(RTTI)
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        穆清 发表于
+        <time datetime="2018-12-09T10:29:00.000Z">2018-12-09</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tag/java/" title="java">java</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h4 id="1-RTTI概述"><a href="#1-RTTI概述" class="headerlink" title="1.RTTI概述"></a>1.RTTI概述</h4><h4 id="1-1-RTTI-Runtime-type-identification-定义"><a href="#1-1-RTTI-Runtime-type-identification-定义" class="headerlink" title="1.1 RTTI(Runtime type identification)定义"></a>1.1 RTTI(Runtime type identification)定义</h4><ul>
+<li>RTTI可以在程序运行时发现和使用类型信息；</li>
+<li>RTTI允许通过匿名基类的引用来发现类型信息；</li>
+<li><p>Java在运行时识别对象和类的信息方式：</p>
+<pre><code>&gt; 通过传统的RTTI方式假设在编译时已经知道了对象和类的所有类型
+&gt; 通过反射机制方式允许在运行时发现和使用类的信息
+</code></pre></li>
+</ul>
+<h4 id="1-2-为什么需要RTTI"><a href="#1-2-为什么需要RTTI" class="headerlink" title="1.2 为什么需要RTTI"></a>1.2 为什么需要RTTI</h4><ul>
+<li>面向对象编程的基本目的：让代码通过操作父类的引用调用子类对象，即多态的实现；</li>
+<li>多态：通过父类的引用来调用某个方法，而子类通过动态绑定覆盖父类的方法而不改变其他子类实现的逻辑；</li>
+<li>RTTI为多态的实现提供了基础；</li>
+<li><p>多态优点：</p>
+<pre><code>&gt; 代码易写/易读/易维护；
+&gt; 设计易于实现/理解/改变；
+&gt; 代码尽可能少的了解对象的具体类型；
+</code></pre></li>
+<li><p>多态的实现条件：继承/重写/向上转型；</p>
+</li>
+<li>多态的作用：消除类型之间的耦合；</li>
+</ul>
+<h4 id="1-3-RTTI工作原理"><a href="#1-3-RTTI工作原理" class="headerlink" title="1.3 RTTI工作原理"></a>1.3 RTTI工作原理</h4><ul>
+<li>RTTI通过Class对象的特殊对象来完成对象和类在运行时的类型信息表示；</li>
+<li>Class对象包含了与类有关的信息；</li>
+<li>Java使用Class对象来执行其RTTI</li>
+</ul>
+<h4 id="2-Class对象"><a href="#2-Class对象" class="headerlink" title="2.Class对象"></a>2.Class对象</h4><h4 id="2-1-类加载概述"><a href="#2-1-类加载概述" class="headerlink" title="2.1 类加载概述"></a>2.1 类加载概述</h4><ul>
+<li>类加载器子系统包含一条类加载链，但只有一个原生类加载器，它是JVM实现的一部分；</li>
+<li>所有类在第一次使用时动态加载到JVM中，程序创建第一个对类的静态成员的引用时就会加载这个类；</li>
+<li>因此使用new操作符创建类的对象也会被当作是对类的静态方法成员的引用，即构造方法也是类的静态方法；</li>
+<li>Java程序在开始运行之前并非完全加载，其各个部分是在必要时才会加载；</li>
+<li>类加载顺序如下：</li>
+</ul>
+<p><img src="https://chasdream.github.io/image/java/1.javaRTTI_class_load_order.png" alt></p>
+<ul>
+<li><p>Class对象仅在需要的时候才被加载，static初始化是在类加载的过程中进行的；</p>
+<pre><code>class Candy {
+    {
+        System.out.println(&quot;Loading Candy...&quot;);
+    }
+    static {
+        System.out.println(&quot;Loading Candy [static]...&quot;);
+    }
+}
+
+class Gum {
+    static {
+        System.out.println(&quot;Loading Gum...&quot;);
+    }
+}
+
+class Cookie {
+    static {
+        System.out.println(&quot;Loading Cookie...&quot;);
+    }
+}
+
+/**
+ * 运行结果:
+ * inside main
+ * Loading Candy [static]...
+ * Loading Candy...
+ * After creating Candy
+ * Loading Gum...
+ * After Class.forName(&quot;Gum&quot;)
+ * Loading Cookie...
+ * After creating Cookie
+ *
+ */
+public class SweetShop {
+
+    public static void main(String[] args) {
+        System.out.println(&quot;inside main&quot;);
+
+        new Candy();
+
+        System.out.println(&quot;After creating Candy&quot;);
+
+        try {
+            //获取Class对象的引用
+            Class.forName(&quot;d02.rtti.ch2.Gum&quot;);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(&quot;After Class.forName(\&quot;Gum\&quot;)&quot;);
+
+        new Cookie();
+
+        System.out.println(&quot;After creating Cookie&quot;);
+    }
+}
+</code></pre></li>
+<li><p>Class.forName()方法获取Class对象的引用，这时才能在运行时使用类型信息；</p>
+</li>
+<li>getClass()返回表示该对象的实际类型的Class对象引用，该方法是根类Object的一部分；</li>
+<li>newInstance()方法是实现虚拟构造器的一个途径，虚拟构造器允许声明不确切类型，但必须正确创建正确创建自己，使用newInstance()创建必须有默认构造器；</li>
+</ul>
+<h4 id="2-2-类字面常量"><a href="#2-2-类字面常量" class="headerlink" title="2.2 类字面常量"></a>2.2 类字面常量</h4><ul>
+<li>Java提供通过<strong><em>字面常量</em></strong>的方式生成对Class对象的引用，格式：T.class；</li>
+<li><strong><em>类字面常量</em></strong>获取Class对象的引用的方式更加安全高效，因为它在编译时就会受到检查(不需要放在try语句块中)并且根除了对forName()方法的调用；</li>
+<li><strong><em>类字面常量</em></strong>应用范围可以是<em>普通类</em>、<em>接口</em>、<em>数组</em>、<em>基本数据类型</em>等，对于基本数据类型的包装器类有一个标准字段TYPE，即：boolean.class &lt;=&gt; Boolean.TYPE；</li>
+<li>TYPE字段是一个引用指向对应的基本数据类型的Class对象；</li>
+<li><p>使用.class来创建对Class对象的引用时，不会自动地进行初始化该Class对象，类初始化过程分为三步：</p>
+<pre><code>&gt; 加载：由类加载器执行查找字节码并从这些字节码中创建一个class对象，通常在classpath路径下查找，但不是必须的；
+&gt; 链接：验证类中字节码并为静态成员分配存储空间，如果有必要将解析这个类创建的对其他类的所有引用；
+&gt; 初始化：若该类存在超类，则对其进行初始化，执行静态初始化器和静态初始化块；
+</code></pre></li>
+</ul>
+<p><img src="https://chasdream.github.io/image/java/2.javaRTTI_class_init.png" alt></p>
+<ul>
+<li><p>初始化被延迟到对静态方法或非常量静态成员变量(非编译期常量)进行首次引用才执行初始化，而<strong><em>编译期常量</em></strong>(static final修饰的变量)不需要类被初始化就可以被读取；</p>
+<pre><code>/**
+ * .class类字面常量和Class.forName()初始化过程区别演示
+ */
+class Initable {
+
+    static final int staticFinal = 30;
+    static final int staticFinal2 = new Random(30).nextInt(1000);
+    static {
+        System.out.println(&quot;Initializing Initable...&quot;);
+    }
+}
+
+class Initable2 {
+    static int staticNonFinal = 130;
+    static {
+        System.out.println(&quot;Initializing Initable2...&quot;);
+    }
+}
+
+class Initable3 {
+    static int staticNoFinal = 100;
+    static {
+        System.out.println(&quot;Initializing Initable3...&quot;);
+    }
+}
+
+public class ClassInitialization {
+
+    public static void main(String[] args) throws ClassNotFoundException {
+
+        Class initable = Initable.class;//加载
+        System.out.println(&quot;After creating Initable ref...&quot;);
+        System.out.println(Initable.staticFinal);//Initable 未初始化，staticFinal是编译期常量
+        System.out.println(Initable.staticFinal2);//Initable 初始化，因为staticFinal2不是编译期常量
+
+        System.out.println(Initable2.staticNonFinal);//Initable2 初始化
+
+        Class initable3 = Class.forName(&quot;d02.rtti.ch2.Initable3&quot;);//Initable3 初始化
+        System.out.println(&quot;After creating Initable3 ref...&quot;);
+        System.out.println(Initable3.staticNoFinal);
+    }
+}
+
+/*
+ 运行结果：
+ After creating Initable ref...
+ 30
+ Initializing Initable...
+ 606
+ Initializing Initable2...
+ 130
+ Initializing Initable3...
+ After creating Initable3 ref...
+ 100
+*/
+</code></pre></li>
+<li><p>.class与Class.forName()创建Class对象引用初始化过程的区别，如上代码示列：</p>
+<pre><code>&gt; .class被延迟到对静态方法或非常量静态成员变量进行首次引用才执行初始化，有效实现了初始化的&quot;惰性&quot;； 
+&gt; forName()获取到Class对象的引用之后立即进行了初始化；
+</code></pre></li>
+<li><p>若一个static域不是final，则访问该域时必须先进行链接和初始化才能访问；</p>
+</li>
+<li>常量(即同时被static final修饰的常量)不需要对类进行初始化就可以被读取；</li>
+</ul>
+<h4 id="2-3-泛化的Class引用"><a href="#2-3-泛化的Class引用" class="headerlink" title="2.3 泛化的Class引用"></a>2.3 泛化的Class引用</h4><ul>
+<li>Class引用总是指向某个Class对象(即指向对象的确切类型，该对象便是Class类的一个对象)，该对象包含：1.作用该实例的所有方法代码；2.该类的静态成员；</li>
+<li>通过泛型语法可以让编译器强制执行额外的类型检查，语法: Class<integer> clazz = int.class；</integer></li>
+<li>通过”?”通配符放松Class引用使用泛型的限制，Class&lt;?&gt; &lt;=&gt; Class，但更建议使用Class&lt;?&gt;；</li>
+<li>创建Class引用被限定在某种类型或该类型的任何子类型，可以通过&lt;? extends SuperClass&gt;方式来创建一个范围，语法：Class&lt;? extends Number&gt; clazz = int.class;</li>
+<li>Class引用通过使用泛型语法可以提供编译期类型检查，而不需要等到运行时才发现类型错误；</li>
+<li>Class&lt;? super SubClass&gt; clazz = subClass.getSuperClass();返回的时基类，并且编译器在编译期就知道他是什么类型了，clazz.newInstance()返回的不是精确的类型而是Object；</li>
+<li>JavaSE5增加了新的转型语法：cast()，其接受参数对象并将其转型为Class引用的类型（用处较少）；</li>
+<li>Class.asSubclass()：允许将一个类对象转型为更加具体的类型（没什么作用）；</li>
+</ul>
+<h4 id="3-对象类型转换检查"><a href="#3-对象类型转换检查" class="headerlink" title="3.对象类型转换检查"></a>3.对象类型转换检查</h4><ul>
+<li><p>RTTI形式包括：</p>
+<pre><code>1.传统类型转换，如：Circle cle = (Circle) shape，由RTTI确保类型转换的正确性，如果执行错误的类型转换则会抛出ClassCastExcepton异常; 
+2.代表对象的类型的Class对象，通过查询Class对象可以获取运行时所需的信息；
+3.通过instantOf进行类型检查；
+</code></pre></li>
+<li><p>使用传统的类型转换，Java需要执行类型检查，这通常被称为”类型安全的向下转型”；</p>
+</li>
+<li>instantOf关键字返回的是一个布尔值，检查对象是不是某个特定类型的实例，例：if(x instantOf Circle) Circle cle = (Circle) x;</li>
+<li>instantOf比较只可将其与命名类型进行比较，不能与Class对象作比较；</li>
+<li>Class.isInstance()方法提供一种动态检查对象的途径(即动态的instantOf)；</li>
+<li><p>class1.isAssignableFrom(class2)判断class2是不是class1的子类或子接口；</p>
+<pre><code>class A {}
+class B extends A {}
+class C {}
+
+public class Test {
+    public static void main(String[] args) {
+        A.class.isAssignableFrom(B.class);//B是A的子类，返回true
+        A.class.isassignableFrom(C.class);//C不是A的子类，返回false
+        B.class.isassignableFrom(A.class);//A是B的父类，返回false
+    }
+}
+</code></pre></li>
+<li><font color="red">补充说明:</font>
+
+<pre><code>&quot;==&quot;、equals()、instantOf比较：
+
+1.字符串变量比较：&quot;==&quot;和equals()
+
+    &quot;==&quot;比较的是两个对象在内存中的首地址；
+    equals()比较的是两个字符串中所包含的内容是否相同, 而Object类中的equals()方法用来比较地址的；
+
+    例：
+    String s1 = new String(&quot;test&quot;);
+    String s2 = new String(&quot;test);
+    System.out.println(&quot;s1 == s2:&quot; + (s1 == s2)); //s1 == s2:false
+    System.out.println(&quot;s1.equals(s2):&quot; + s1.equals(s2)); //s1.equals(s2):true
+
+    String s3 = &quot;test&quot;;
+    String s4 = &quot;test&quot;;
+    System.out.println(&quot;s3 == s4:&quot; + (s3 == s4));//s3 == s4:true
+    System.out.println(&quot;s3.equals(s4):&quot; + s3.equals(s4));//s3.equals(s4):true
+
+    s3 == s4返回为true是因为s3和s4都指向同一内存地址；
+
+2.非字符串变量比较：&quot;==&quot;、equals()和instantOf
+
+    instantOf:用于判断一个引用类型所引用的对象是否是一个类的实例，即左边操作元和右边操作元必须是同一种类或具有继承关系，例如：B继承A 则：(b instantOf A) 和 (a instantOf B) 都为true；
+
+    &quot;==&quot;和equals():两者都是用于比较其对象在内存中的首地址是否相同，即比较两个引用变量是否指向同一个对象；
+
+    例:
+    A a1 = new A();
+    A a2 = new A();
+    System.out.println(a1 == a2);//false
+    System.out.println(a1.equals(a2));//false
+
+3.equals()方法遵循的设计原则：
+
+    &gt; 对称性：即x.equals(y)为true，则y.equals(x)也为true
+    &gt; 反射性：即x.equals(x)为true
+    &gt; 类推性：即x.equals(y)为true，y.equals(z)为true，则x.equals(z)也为true
+    &gt; 一致性：即x.equals(y)为true，若x,y的值不变，则x,y永远相等
+    &gt; x.equals(null)永远为false
+    &gt; x.equals(和x不同类型对象)永远为false
+</code></pre></li>
+</ul>
+
+            
+            <p class="more">
+                <a href="http://localhost:4000/2018/12/09/2018-12-09-JavaRTTI/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img>
+            <a href="http://localhost:4000/2018/12/09/2018-12-09-JavaRTTI/" title="Java类型信息(RTTI)">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/9.jpg" alt="默认配图">
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categorys/java/">java</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="http://localhost:4000/2018/11/29/2018-11-29-Java Annonations(learn)/">
+    		Java注解
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        穆清 发表于
+        <time datetime="2018-11-29T14:40:00.000Z">2018-11-29</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tag/java/" title="java">java</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <p>注解是Java SE5中引入的新特性；</p>
+<h4 id="1">1.注解定义：</h4>
+
+<ul>
+<li><p>注解(也称为元数据)为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时候可以方便地使用这些数据；</p>
+</li>
+<li><p>注解在一定程度上把元数据与源代码文件结合在一起，而不是保存在外部文档中；</p>
+</li>
+<li><p>注解不能使用extends来继承某个@interface</p>
+</li>
+<li><p>注解优势：</p>
+<pre><code>&gt; 通过注解将元数据保存到Java源代码中；
+&gt; 提供更加干净易读的代码以及编译期类型检查；
+</code></pre></li>
+</ul>
+<h4 id="2">2.Java内置三种注解：</h4>
+
+<ul>
+<li><p>Java内置三种注解, 如下：</p>
+<pre><code>@Override: 表示当前的方法定义将覆盖父类中的方法；
+@Deprecated: 被该注解标识的类或方法表示已过时，编译器会发出警告信息；
+@SuppressWarnings: 关闭不当的编译器警告信息；
+</code></pre></li>
+</ul>
+<h4 id="3">3.注解声明</h4>
+
+<ul>
+<li><p>定义注解时需要一些元注解(meta-annotation)，如下：</p>
+<pre><code>@Target: 用来定义注解将应用于什么地方
+@Rectetion: 用来定义该注解在哪个级别可用
+</code></pre></li>
+<li><p>没有元素的注解被称为标记注解，例如：@Test</p>
+<pre><code>@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Test {}
+</code></pre></li>
+<li><p>注解一般都会包含一些元素用来表示某些值，例如：定义@UseCase注解并通过PasswordUtils使用该注解</p>
+<pre><code>/**
+ * 定义一个包含一些元素的注解
+ * 该注解将应用于方法上，定义在运行时可用
+ */
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface UseCase {
+
+    public int id();
+
+    /**
+     * 该元素指定默认值，若某个方法使用该注解没有给description赋值，则使用该指定的默认值
+     * @return
+     */
+    public String description() default &quot;no description&quot;;
+}
+
+/**
+ * 定义使用注解的类及方法
+ * 注解元素在使用时表现为名-值对的信息
+ */
+public class PasswordUtils {
+
+    @UseCase(id = 47, description = &quot;Passwords must contain at least one numeric&quot;)
+    public boolean validatePassword(String password) {
+        return password.matches(&quot;\\w*\\d\\w*&quot;);
+    }
+
+    /**
+     * 没有指定description的值，UseCase注解处理器分析处理这个类时会使用该元素的默认值
+     * 
+     * @param password
+     * @return
+     */
+    @UseCase(id = 48)
+    public String encryptPassword(String password) {
+        return new StringBuilder(password).reverse().toString();
+    }
+
+    @UseCase(id = 49, description = &quot;New passwords can&apos;t equal previously used ones&quot;)
+    public boolean checkForNewPassword(List&lt;String&gt; prevPasswords, String password) {
+        return !prevPasswords.contains(password);
+    }
+}
+</code></pre></li>
+</ul>
+<h4 id="4">4.元注解</h4>
+
+<ul>
+<li><p>Java内置了三种标准注解，已及四种元注解，元注解专职负责注解其他注解：</p>
+<ul>
+<li><p>@Target: 表示该注解将应用于什么地方，ElementType参数包括(7种)：</p>
+<pre><code>- CONSTRUCTOR: 构造器的声明
+- FIELD: 域的声明(包括enum实例)
+- LOCAL_VARIABLE: 局部变量声明
+- METHOD: 方法声明
+- PACKAGE: 包声明
+- PARAMETER: 参数声明
+- TYPE: 类，接口(包括注解类型)或enum声明
+</code></pre></li>
+<li><p>@Retention: 表示需要什么级别保存该注解信息，RetentionPolicy参数包括：</p>
+<pre><code>- SOURCE: 定义源码级别，将被编译器丢弃
+- CLASS: 注解在class文件中可用，但会被JVM丢弃
+- RUNTIME: VM将在运行期也保留注解，因此可以通过反射机制读取注解信息
+</code></pre></li>
+<li><p>@Documented: 将此注解包含在Javadoc中</p>
+</li>
+<li><p>@Inherited: 允许子类继承父类中的注解</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="5">5.编写注解处理器</h4>
+
+<ul>
+<li><p>编写@UseCase注解处理器，用其读取PasswordUtils类，并通过反射机制查找@UseCase标记</p>
+<pre><code>/**
+ * @see UseCase 注解处理器，通过该注解处理器读取PasswordUtils类中@UserCase的标记
+ * 
+ * getDeclaredMethods()和getAnnotation()这两个方法都是属于AnnotationElement接口(Class/Method/Field等类都实现了该接口)
+ * 
+ * getAnnotation()方法返回指定类型的注解对象，如果被注解的方法上没有该类型的注解，则返回null值
+ */
+
+public class UseCaseTracker {
+
+    public static void trackUseCases(List&lt;Integer&gt; userCases, Class&lt;?&gt; cl) {
+
+        //通过反射获取cl的所有方法, 包括private/public/default/protected
+        for (Method m : cl.getDeclaredMethods()) {
+
+            //获取注解标记
+            UseCase useCase = cl.getAnnotation(UseCase.class);
+
+            if (null != useCase) {
+                userCases.remove(new Integer(useCase.id()));
+            }
+        }
+
+        for (int i : userCases) {
+            System.out.println(&quot;Warning: Missing use case-&quot; + i);
+        }
+    }
+
+    public static void main(String[] arg) {
+        List&lt;Integer&gt; useCases = new ArrayList&lt;&gt;();
+        Collections.addAll(useCases, 47, 48, 49, 50);
+        trackUseCases(useCases, PasswordUtils.class);
+    }
+}
+</code></pre></li>
+</ul>
+<h4 id="6">6.注解元素可用的类型</h4>
+
+<ul>
+<li><p>java注解不允许使用任何包装类型，不过由于自动打包的存在，这算不上什么限制；</p>
+</li>
+<li><p>注解是可用嵌套使用，即注解可用作为元素的类型；</p>
+</li>
+<li><p>注解可使用的类型如下, 如果使用了除一下类型的其他类型则编译器就会报错：</p>
+<pre><code>&gt; 所有的基本类型(byte, short, int, long, float, double, char, boolean)
+&gt; String
+&gt; enum
+&gt; Annotation
+&gt; 以上类型的数组
+</code></pre></li>
+</ul>
+<h4 id="7">7.注解处理工具(apt)</h4>
+
+<ul>
+<li>apt被设计为操作Java源文件，而不是编译后的类文件；</li>
+<li>apt会检查新生成的源文件中注解，然后将所有文件一起编译，apt能够很容易的将多个注解处理器组合到一起；</li>
+<li>apt生成注解处理器时无法利用Java的反射机制，因为apt操作的是源代码而不是编译后的类文件，但使用非标准的选项-XclassesAsDecls可以在编译后的类中操作注解；</li>
+<li>使用mirror API可以在未经编译的源代码中查看方法，变量及类型；</li>
+<li><p>示例：</p>
+<ul>
+<li><p>编写一个自定义注解，可以把一个类中的public方法提取构造成一个新的接口</p>
+<pre><code>/**
+ * 该注解用于提取一个类中public方法生成新的接口
+ * RetentionPolicy.SOURCE：定义在源码级别可用
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.SOURCE)
+public @interface ExtractInterface {
+
+    public String value();
+
+}
+</code></pre></li>
+<li><p>创建包含一个public方法的类，用于抽取该方法生成新的接口</p>
+<pre><code>/**
+ * 该类包含一个multiply()的public，将提取该public方法用于生成新的接口
+ * add()方法是一个private，不将其作为新接口的一部分
+ * 注解中IMultiplier的值是将要生成接口的名字
+ */
+@ExtractInterface(&quot;IMultiplier&quot;)
+public class Multiplier {
+
+    public int multiply(int x, int y) {
+
+        int total = 0;
+
+        for (int i = 0; i &lt; x; i++) {
+            total = add(total, y);
+        }
+
+        return total;
+    }
+
+    private int add(int x, int y) {
+        return x + y;
+    }
+}
+</code></pre></li>
+<li><p>编写apt注解处理器</p>
+<pre><code>/**
+ * apt注解处理器
+ */
+public class InterfaceExtractorProcessor extends AbstractProcessor {
+
+    private ProcessingEnvironment processingEnv;
+
+    /**
+     * 返回注解处理器可以处理的注解操作
+     * 可以通过使用@SupportedOptions简化该种方式
+     *
+     * @return
+     */
+    @Override
+    public Set&lt;String&gt; getSupportedOptions() {
+        return super.getSupportedOptions();
+    }
+
+    /**
+     * 指定要处理的注解，将注解的全路径名称放入set集合中，返回可以支持的注解类型
+     * 可以通过使用@SupportedAnnotationTypes(&quot;d01.annotation.anno01.apt.ExtractInterface&quot;)简化该种方式
+     *
+     * @return
+     */
+    @Override
+    public Set&lt;String&gt; getSupportedAnnotationTypes() {
+        Set&lt;String&gt; set = new HashSet&lt;&gt;();
+        set.add(ExtractInterface.class.getCanonicalName());
+        return set;
+    }
+
+    /**
+     * 指定Java版本
+     * 可以通过使用@SupportedSourceVersion(SourceVersion.RELEASE_8)简化该种方式
+     *
+     * @return
+     */
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.RELEASE_8;
+    }
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        this.processingEnv = processingEnv;
+    }
+
+    /**
+     * apt注解处理方法
+     *
+     * @param annotations 包含注解类的集合，getSupportedAnnotationTypes()方法中指定
+     * @param roundEnv    包含被注解类的集合的接口
+     * @return
+     */
+    @Override
+    public boolean process(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv) {
+
+        try {
+
+            for (TypeElement type : annotations) {
+
+                //type是注解全限定名称
+                for (Element element : roundEnv.getElementsAnnotatedWith(type)) {
+
+                    ExtractInterface extInterface = element.getAnnotation(ExtractInterface.class);
+
+                    if (null == extInterface) break;
+
+                    //element是被注解类全限定名称
+                    Class clazz = Class.forName(element.toString());
+
+                    System.out.println(&quot;clazz: &quot; + element);
+
+                    if (clazz.getDeclaredMethods().length &lt;= 0) break;
+
+                    /**
+                     * Filer是一种PrintWriter，使用Filer对象apt才能知道创建的新文件，从而对新文件进行注解处理，并且在需要的时候编译
+                     */
+                    Writer writer = processingEnv.getFiler().createSourceFile(extInterface.value()).openWriter();
+
+                    //package
+                    writer.write(&quot;package &quot; + clazz.getPackage().getName() + &quot;;\n\n&quot;);
+
+                    //interface declaration
+                    writer.write(&quot;public interface &quot; + extInterface.value() + &quot;{\n\n&quot;);
+
+                    for (Method method : clazz.getDeclaredMethods()) {
+
+                        //筛选出非静态的public方法
+                        if (method.getModifiers() == Modifier.PUBLIC &amp;&amp; method.getModifiers() != Modifier.STATIC) {
+
+                            //method
+                            writer.write(&quot;  &quot; + method.getReturnType().getSimpleName() + &quot; &quot; + method.getName() + &quot;(&quot;);
+
+                            //param
+                            int i = 0;
+
+                            for (Parameter p : method.getParameters()) {
+
+                                writer.write(p.getType().getSimpleName() + &quot; &quot; + p.getName());
+
+                                if (++i &lt; method.getParameters().length) {
+                                    writer.write(&quot;, &quot;);
+                                }
+
+                            }
+                            writer.write(&quot;);\n\n&quot;);
+                        }
+                    }
+
+                    writer.write(&quot;}&quot;);
+                    writer.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Boolean.TRUE;
+    }
+}
+</code></pre></li>
+<li><p>注册processor</p>
+<pre><code>- 在src/main目录下创建文件resources/META-INF/services/javax.annotation.processing.Processor文件；
+- 在javax.annotation.processing.Processor文件中写入自定义的Processor的全路径名称，若存在多个则每行写一个，文件内容如下：
+
+        # 注册InterfaceExtractorProcessor
+        d01.annotation.anno01.apt.InterfaceExtractorProcessor
+
+- 报错：服务配置文件不正确, 或构造处理程序对象javax.annotation.processing.Processor: Provider d01.annotation.anno01.apt.InterfaceExtractorProcessor not found时抛出异常错误
+
+       解决方案：在pom.xm文件中增加**&lt;compilerArgument&gt;-proc:none&lt;/compilerArgument&gt;**配置
+
+       &lt;build&gt;
+           &lt;plugins&gt;
+               &lt;plugin&gt;
+                   &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                   &lt;version&gt;3.3&lt;/version&gt;
+                   &lt;configuration&gt;
+                       &lt;source&gt;1.8&lt;/source&gt;
+                       &lt;target&gt;1.8&lt;/target&gt;
+                       &lt;compilerArgument&gt;-proc:none&lt;/compilerArgument&gt;
+                   &lt;/configuration&gt;
+               &lt;/plugin&gt;
+           &lt;/plugins&gt;
+       &lt;/build&gt;
+</code></pre></li>
+</ul>
+</li>
+<li><p>编译执行：javac -cp InterfaceExtractorProcessor.jar Test.java  其中Test.java是被注解的类</p>
+</li>
+</ul>
+<h4 id="8">8.java8新注解</h4>
+
+<ul>
+<li><p>java8为ElementType新增两种注解类型枚举：</p>
+<pre><code>TYPE_PARAMETER：该注解可以在类型参数声明语句中使用，如：&lt;T&gt;等
+TYPE_USE：该注解可以在任何用到类型声明的地方使用，如：public void test(@Test String param) {}
+</code></pre></li>
+<li><p>重复注解@Repeatble</p>
+<ul>
+<li><p>定义重复注解：允许同一声明前多次使用同一注解</p>
+<pre><code>/**
+  * 将需要重复注解通过@Repeatable存储到RepeatbleAnnos注解容器中
+  */
+@Repeatable(RepeatbleAnnos.class)
+public @interface RepeatbleAnno {
+    String repeat();
+}
+
+/**
+  * 定义存储重复注解的注解容器
+  */
+public @interface RepeatbleAnnos {
+    RepeatbleAnno[] value();
+}
+
+@RepeatbleAnno(repeat = &quot;1&quot;)
+@RepeatbleAnno(repeat = &quot;2&quot;)
+public class RepeatbleTest {
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
+            
+            <p class="more">
+                <a href="http://localhost:4000/2018/11/29/2018-11-29-Java Annonations(learn)/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img>
+            <a href="http://localhost:4000/2018/11/29/2018-11-29-Java Annonations(learn)/" title="Java注解">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/9.jpg" alt="默认配图">
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+
+    
+    <nav class="page-navigator">
+        <span class="page-number current">1</span>
+    </nav>
+    
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+    <li>
+        <a href="/categorys/linux技术/">linux技术</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/设计模式/">设计模式</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/redis技术/">redis技术</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categorys/java/">java</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tag/linux/" title="linux">linux (2)</a>
+  
+    <a class="tag-item" href="/tag/mysql/" title="mysql">mysql (1)</a>
+  
+    <a class="tag-item" href="/tag/设计模式/" title="设计模式">设计模式 (1)</a>
+  
+    <a class="tag-item" href="/tag/redis/" title="redis">redis (1)</a>
+  
+    <a class="tag-item" href="/tag/spring/" title="spring">spring (1)</a>
+  
+    <a class="tag-item" href="/tag/java/" title="java">java (2)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2018-2019
+    
+
+    <a href="/">chasdream</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+<script src="/js/main.js"></script>
+</body>
+</html>
